@@ -2,8 +2,10 @@ import React from "react";
 import "./ProductCart.css";
 
 const ProductCart = (props) => {
-  console.log(props.singleData);
+  //   console.log(props);
   const { id, name, img, seller, ratings, quantity, price } = props.singleData;
+  const addCartHandler = props.addCartHandler;
+
   return (
     <div className="cart-item">
       <img className="cart-img" src={img} alt="" />
@@ -21,7 +23,12 @@ const ProductCart = (props) => {
           </p>
         </div>
       </div>
-      <button className="btn-add-cart">Add to Cart</button>
+      <button
+        className="btn-add-cart"
+        onClick={() => addCartHandler(props.singleData)}
+      >
+        Add to Cart
+      </button>
     </div>
   );
 };
