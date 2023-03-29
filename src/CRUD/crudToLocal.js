@@ -2,24 +2,23 @@ const addToDb = (product_id)=>{
 
 
     let product ={};
-    let prevProduct= getDataFromLocal('shopping_cart');
+    let prevShoppingCart= getDataFromLocal('shopping_cart');
 
-    let quantity = prevProduct.find(obj => obj[product_id]);
-    if(quantity){
-        // const index = prevProduct.indexOf(quantity);
-        // console.log(index);
-        const newQuantity = quantity[product_id]+1;
-        quantity[product_id] = newQuantity;
+    let selectedData = prevShoppingCart.find(obj => obj[product_id]);
+    let restData = prevShoppingCart.filter(x => !x[product_id]);
+
+    if(selectedData){
+        selectedData[product_id] = selectedData[product_id]+1;
+        prevShoppingCart = [...restData, selectedData];
     } else{
         product[product_id]=1;
-        console.log(product)
-        prevProduct.push(product);
+        prevShoppingCart.push(product);
     }
 
-    localStorage.setItem('shopping_cart',JSON.stringify(prevProduct));
+    localStorage.setItem('shopping_cart',JSON.stringify(prevShoppingCart));
 }
 
-const getDataFromLocal= (dB)=>{
+const getDataFromLocal= (dB = 'shopping_cart')=>{
     let prevDb = [];
     const data = localStorage.getItem(dB);
     if(data){
@@ -29,4 +28,4 @@ const getDataFromLocal= (dB)=>{
 }
 
 
-export { addToDb };
+export { addToDb, getDataFromLocal };
