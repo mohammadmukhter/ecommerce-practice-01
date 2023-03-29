@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { addToDb } from "../../CRUD/crudToLocal";
+import Cart from "../Cart/Cart";
 import ProductCart from "../ProductCart/ProductCart";
 import "./Shop.css";
 
@@ -15,9 +17,9 @@ const Shop = () => {
   const addCartHandler = (product = {}) => {
     const newCartData = [...cartData, product];
     setCartData(newCartData);
+    addToDb(product.id);
   };
 
-  console.log(cartData);
   return (
     <div className="shop-container">
       <div className="product-container">
@@ -32,8 +34,7 @@ const Shop = () => {
         })}
       </div>
       <div className="cart-container">
-        cart section
-        <h3>added Cart: {cartData.length}</h3>
+        <Cart cartData={cartData}></Cart>
       </div>
     </div>
   );
