@@ -37,15 +37,16 @@ const Shop = () => {
 
   const addCartHandler = (product = {}) => {
     const matchedData = cartData.find((x) => x.id === product.id);
-    const restData = cartData.filter((x) => x.id !== product.id);
 
+    let newCartData = [];
     if (!matchedData) {
       product.quantity = 1;
+      newCartData = [...cartData, product];
     } else {
       product.quantity = matchedData.quantity + 1;
+      const restData = cartData.filter((x) => x.id !== product.id);
+      newCartData = [...restData, product];
     }
-
-    const newCartData = [...restData, product];
 
     setCartData(newCartData);
     addToDb(product.id);
