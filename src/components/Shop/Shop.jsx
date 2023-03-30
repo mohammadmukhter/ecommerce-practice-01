@@ -8,7 +8,7 @@ const Shop = () => {
   const [products, setProducts] = useState([]);
   const [cartData, setCartData] = useState([]);
 
-  console.log(products);
+  //   console.log(products);
   useEffect(() => {
     fetch("products.json")
       .then((res) => res.json())
@@ -36,8 +36,18 @@ const Shop = () => {
   }, [products]);
 
   const addCartHandler = (product = {}) => {
-    const newCartData = [...cartData, product];
-    // setCartData(newCartData);
+    const matchedData = cartData.find((x) => x.id === product.id);
+    const restData = cartData.filter((x) => x.id !== product.id);
+
+    if (!matchedData) {
+      product.quantity = 1;
+    } else {
+      product.quantity = matchedData.quantity + 1;
+    }
+
+    const newCartData = [...restData, product];
+
+    setCartData(newCartData);
     addToDb(product.id);
   };
 

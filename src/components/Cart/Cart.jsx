@@ -12,9 +12,11 @@ const Cart = (props) => {
     // console.log(product);
 
     quantity += product.quantity;
-    total += product.price;
+    total += product.price * product.quantity;
     totalShippingCharge += product.shipping;
-    tax += (product.price * 5) / 100;
+
+    // 5% tax included here
+    tax += (product.price * product.quantity * 5) / 100;
   });
 
   return (
@@ -23,7 +25,7 @@ const Cart = (props) => {
       <h3>Selected Product: {quantity}</h3>
       <p>Total Price: ${total} </p>
       <p>Total Shipping Charge: ${totalShippingCharge.toFixed(2)} </p>
-      <p>Tax: ${tax} </p>
+      <p>Tax: ${tax.toFixed(2)} </p>
       <h3>Grand Total: ${(total + totalShippingCharge + tax).toFixed(2)} </h3>
       <div>
         <button className="btn-red ">Clear Cart</button>
