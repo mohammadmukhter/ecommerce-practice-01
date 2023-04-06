@@ -1,0 +1,22 @@
+.order-detail img {
+  width: 91px;
+  height: 91px;
+}
+
+.order-detail {
+  width: calc(100% - 30%);
+  margin: 30px auto;
+  background-color: bisque;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-product-info {
+  flex-grow: 1;
+}
+
+.cart-product-info p {
+  margin: 5px 10px;
+}
