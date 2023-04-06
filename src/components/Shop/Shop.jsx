@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { addToDb, getDataFromLocal } from "../../CRUD/crudToLocal";
+import {
+  addToDb,
+  getDataFromLocal,
+  removeAllFromLocal,
+} from "../../CRUD/crudToLocal";
 import Cart from "../Cart/Cart";
 import ProductCart from "../ProductCart/ProductCart";
 import "./Shop.css";
@@ -52,6 +56,8 @@ const Shop = () => {
     addToDb(product.id);
   };
 
+  const deleteCart = removeAllFromLocal();
+
   //   console.log(cartData);
   return (
     <div className="shop-container">
@@ -67,7 +73,11 @@ const Shop = () => {
         })}
       </div>
       <div className="cart-container">
-        <Cart cartData={cartData}></Cart>
+        <Cart cartData={cartData}>
+          <button onClick={deleteCart} className="btn-red">
+            Clear Cart
+          </button>
+        </Cart>
       </div>
     </div>
   );

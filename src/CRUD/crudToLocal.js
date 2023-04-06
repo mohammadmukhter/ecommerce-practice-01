@@ -18,19 +18,27 @@ const addToDb = (product_id)=>{
 
 const removeFromDb =(id)=>{
     const localData = getDataFromLocal('shopping_cart');
+    let newData = [...localData];
+
     localData.forEach(pd => {
+        // console.log(pd)
+        
         for(let x in pd){
             if(x === id){
-                delete pd[x];
+                const idx = newData.indexOf(pd);
+                newData.splice(idx, 1);
             }
         }
     });
 
-    // console.log(localData)
+    // console.log(newData)
 
-    localStorage.setItem('shopping_cart', JSON.stringify(localData));
+    localStorage.setItem('shopping_cart', JSON.stringify(newData));
 }
 
+const removeAllFromLocal =()=>{
+    localStorage.removeItem('shopping-cart');
+}
 const getDataFromLocal= (dB = 'shopping_cart')=>{
     let prevDb = [];
     const data = localStorage.getItem(dB);
@@ -41,4 +49,4 @@ const getDataFromLocal= (dB = 'shopping_cart')=>{
 }
 
 
-export { addToDb, getDataFromLocal, removeFromDb };
+export { addToDb, getDataFromLocal, removeFromDb, removeAllFromLocal };

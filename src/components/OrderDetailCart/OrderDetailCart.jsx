@@ -2,7 +2,7 @@ import React from "react";
 import "./OrderDetailCart.css";
 
 const OrderDetailCart = ({ cartData, removeSingleData }) => {
-  console.log(cartData);
+  // console.log(cartData);
 
   return (
     <div className="order-detail">
