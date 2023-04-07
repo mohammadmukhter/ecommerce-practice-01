@@ -37,7 +37,8 @@ const removeFromDb =(id)=>{
 }
 
 const removeAllFromLocal =()=>{
-    localStorage.removeItem('shopping-cart');
+    console.log('local')
+    localStorage.removeItem('shopping_cart');
 }
 const getDataFromLocal= (dB = 'shopping_cart')=>{
     let prevDb = [];

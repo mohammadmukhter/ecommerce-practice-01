@@ -56,7 +56,10 @@ const Shop = () => {
     addToDb(product.id);
   };
 
-  const deleteCart = removeAllFromLocal();
+  const deleteCart = () => {
+    setCartData([]);
+    removeAllFromLocal();
+  };
 
   //   console.log(cartData);
   return (
@@ -73,11 +76,7 @@ const Shop = () => {
         })}
       </div>
       <div className="cart-container">
-        <Cart cartData={cartData}>
-          <button onClick={deleteCart} className="btn-red">
-            Clear Cart
-          </button>
-        </Cart>
+        <Cart deleteCart={deleteCart} cartData={cartData}></Cart>
       </div>
     </div>
   );
