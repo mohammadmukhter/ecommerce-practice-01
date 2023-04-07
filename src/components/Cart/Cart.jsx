@@ -1,6 +1,6 @@
 import React from "react";
 import "./Cart.css";
-const Cart = ({ cartData, deleteCart }) => {
+const Cart = ({ cartData, deleteCart, children }) => {
   const cartProducts = cartData;
   // console.log(deleteCart);
 
@@ -32,6 +32,7 @@ const Cart = ({ cartData, deleteCart }) => {
         <button onClick={deleteCart} className="btn-red ">
           Clear Cart
         </button>
+        {children}
       </div>
     </div>
   );

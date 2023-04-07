@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
+import Checkout from "./components/Checkout/Checkout";
 import Inventory from "./components/Inventory/Inventory";
 import Layout from "./components/Layout/Layout";
 import Login from "./components/Login/Login";
@@ -33,6 +34,14 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout></Checkout>,
+      },
+      {
+        path: "*",
+        element: <h1>oops!! no page found</h1>,
       },
     ],
   },

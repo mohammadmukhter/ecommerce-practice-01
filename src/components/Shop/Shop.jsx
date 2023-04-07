@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   addToDb,
   getDataFromLocal,
@@ -76,7 +77,11 @@ const Shop = () => {
         })}
       </div>
       <div className="cart-container">
-        <Cart deleteCart={deleteCart} cartData={cartData}></Cart>
+        <Cart deleteCart={deleteCart} cartData={cartData}>
+          <Link to={"/order"}>
+            <button>Order Review</button>
+          </Link>
+        </Cart>
       </div>
     </div>
   );
